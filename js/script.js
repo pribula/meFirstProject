@@ -11,6 +11,13 @@ let body = document.querySelector(".forNow");
 
 link.addEventListener("click", function () {
     popup.classList.add("modal-show");
+    next_text.disabled = false;
+    prev_text.disabled = false;
+    i = 0;
+    x = 0;
+    text.innerHTML = '';
+    arrDays = ["понеділок", "вівторок", "середа", "четвер", "пятниця", "субота", "неділя",];//fix
+    arrDays2 = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela",];//bug
 });
 link2.addEventListener("click", function () {
     popup.classList.add("modal-show");
@@ -43,6 +50,7 @@ close.addEventListener("click", function () {
     popup.classList.remove("modal-show");
     body.classList.remove('lock');
 });
+
 
 window.addEventListener("keydown", function (evt) {
     if (evt.keyCode === 27) {
@@ -83,19 +91,19 @@ for (x = 0; x < arrDays.length;) {
 
 next_text.addEventListener("click", function () {
     text.innerHTML = (`${arrDays[i++] + '-' + arrDays2[x++]}`);
-    if (text.innerHTML == arrDays[arrDays.length - 1] + '-' + arrDays2[arrDays2.length - 1]) {
+    if (text.innerHTML === arrDays[arrDays.length - 1] + '-' + arrDays2[arrDays2.length - 1]) {
         next_text.disabled = true;
     };
 });
 
 prev_text.addEventListener("click", function () {
     text.innerHTML = (`${arrDays[--i] + '-' + arrDays2[--x]}`);
-    if (text.innerHTML == arrDays[0] + '-' + arrDays2[0]) {
+    if (text.innerHTML === arrDays[0] + '-' + arrDays2[0]) {
         prev_text.disabled = true;
     };
 });
 // бургер
-
+let closeburger = document.querySelector(".header__menu, .header__menu");
 $(document).ready(function () {
     // при нажатии на кнопку бургера
     $('.header__burger').click(function (event) {
@@ -106,6 +114,22 @@ $(document).ready(function () {
         $('body').toggleClass('lock');
     });
 });
+
+
+let w = document.querySelector(".header__burger");
+let we = document.querySelector(".header__menu");
+
+window.addEventListener("keydown", function (evts) {
+    if (evts.keyCode === 27) {
+        evts.preventDefault();
+        if (we.classList.contains("active")) {
+            we.classList.remove("active");
+            w.classList.remove("active");
+        }
+    }
+});
+
+
 /* блокування прокрутки
 $(document).ready(function () {
     $('.four-block__text').click(function (event) {
@@ -114,7 +138,7 @@ $(document).ready(function () {
 });
 */
 
-/* йобані хвилі*/
+/* хвилі*/
 
 let wrapper1 = document.querySelector(".wrapper2");
 let wave_btn = document.querySelector(".wave-btn2");
@@ -122,7 +146,7 @@ let wave_btn__text = document.querySelector(".wave-btn__text2");
 let wave_btn__waves = document.querySelector(".wave-btn__waves2");
 
 
-window.onresize = function (e) {
+window.onresize = function () {
     if (document.documentElement.clientWidth >= 767) {
         wrapper1.classList.add("wrapper1");
         wave_btn.classList.add("wave-btn");
@@ -138,7 +162,14 @@ window.onresize = function (e) {
     }
 }
 
-
+window.onload = function () {
+    if (document.documentElement.clientWidth >= 767) {
+        wrapper1.classList.add("wrapper1");
+        wave_btn.classList.add("wave-btn");
+        wave_btn__text.classList.add("wave-btn__text");
+        wave_btn__waves.classList.add("wave-btn__waves");
+    }
+}
 
 
 

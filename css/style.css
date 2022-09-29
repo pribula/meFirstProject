@@ -51,6 +51,7 @@ body {
 	position: fixed;
 	width: 100%;
 	background-color: #293449;
+	opacity: 0.96;
 	z-index: 999;
 }
 
@@ -329,7 +330,7 @@ background: url('../img/duolingo.svg') 0 0 /100% auto no-repeat;
 /*    footer    */
 
 .footer {
-	background-color:#293449 ;
+	background-color:#293449;
 	text-align: center;
 	padding: 10px 0;
 	max-height: 10%;
