@@ -1,7 +1,5 @@
-
 // відкриття і закриття модалки
-
-let close = document.querySelector(".modal-close");
+let close1 = document.querySelector(".modal-close");
 let popup = document.querySelector(".modal-learn");
 let link = document.querySelector(".lesson_1");
 let link2 = document.querySelector(".lesson_2");
@@ -11,31 +9,36 @@ let body = document.querySelector(".forNow");
 
 link.addEventListener("click", function () {
     popup.classList.add("modal-show");
+    body.classList.add('lock');
     next_text.disabled = false;
-    prev_text.disabled = false;
+    prev_text.disabled = true;
     i = 0;
     x = 0;
     text.innerHTML = '';
     arrDays = ["понеділок", "вівторок", "середа", "четвер", "пятниця", "субота", "неділя",];//fix
     arrDays2 = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela",];//bug
 });
+
 link2.addEventListener("click", function () {
     popup.classList.add("modal-show");
+    body.classList.add('lock');
     text.innerHTML = '';
     arrDays = ['один', 'два', 'три', 'чотири', "п'ять", 'шість', 'сім', 'вісім', "дев'ять", 'десять'];
     arrDays2 = ['jeden', 'dwa', 'trzy', 'cztery', 'pięć', 'sześć', 'siedem', 'osiem', 'dziewięć', 'dziesięć',];
     next_text.disabled = false;
-    prev_text.disabled = false;
+    prev_text.disabled = true;
     i = 0;
     x = 0;
 });
+
 link3.addEventListener("click", function () {
     popup.classList.add("modal-show");
+    body.classList.add('lock');
     text.innerHTML = '';
     arrDays = ['тест1', 'тест2', 'тест3', 'тест4', "тест5",];
     arrDays2 = ['test1', 'test2', 'test3', 'test4', 'test5',];
     next_text.disabled = false;
-    prev_text.disabled = false;
+    prev_text.disabled = true;
     i = 0;
     x = 0;
 });
@@ -45,8 +48,7 @@ link4.addEventListener("click", function () {
 });
 
 
-
-close.addEventListener("click", function () {
+close1.addEventListener("click", function () {
     popup.classList.remove("modal-show");
     body.classList.remove('lock');
 });
@@ -55,16 +57,12 @@ close.addEventListener("click", function () {
 window.addEventListener("keydown", function (evt) {
     if (evt.keyCode === 27) {
         evt.preventDefault();
-        if (popup.classList.contains("modal-show")) {
-            popup.classList.remove("modal-show");
-            // body.classList.remove('lock');
-        }
+        popup.classList.remove("modal-show");
+        body.classList.remove('lock');
     }
 });
 
-
 //зміна кольору після уроку
-
 let change = document.querySelectorAll(".four-block__item");
 function showChange() {
     this.classList.add("item_1");
@@ -79,38 +77,31 @@ let text = document.querySelector(".modal_text");
 let next_text = document.querySelector(".modal-next");
 let prev_text = document.querySelector(".modal-prev");
 
-let arrDays = ["понеділок", "вівторок", "середа", "четвер", "пятниця", "субота", "неділя",];
-let arrDays2 = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela",];
-let i;
-for (i = 0; i < arrDays.length;) {
-    break;
-};
-for (x = 0; x < arrDays.length;) {
-    break;
-};
 
 next_text.addEventListener("click", function () {
-    text.innerHTML = (`${arrDays[i++] + '-' + arrDays2[x++]}`);
+    text.innerHTML = (`${arrDays[++i] + '-' + arrDays2[++x]}`);
     if (text.innerHTML === arrDays[arrDays.length - 1] + '-' + arrDays2[arrDays2.length - 1]) {
         next_text.disabled = true;
-    };
+    } else {
+        next_text.disabled = false;
+        prev_text.disabled = false;
+    }
 });
 
 prev_text.addEventListener("click", function () {
     text.innerHTML = (`${arrDays[--i] + '-' + arrDays2[--x]}`);
     if (text.innerHTML === arrDays[0] + '-' + arrDays2[0]) {
         prev_text.disabled = true;
-    };
+    } else {
+        prev_text.disabled = false;
+        next_text.disabled = false;
+    }
 });
-// бургер
+// бургер тут використано jquery
 let closeburger = document.querySelector(".header__menu, .header__menu");
 $(document).ready(function () {
-    // при нажатии на кнопку бургера
-    $('.header__burger').click(function (event) {
-        // добавление класса активности для того чтобы выезжало меню
-        // и анимировалась кнопка бургера
+    $('.header__burger').click(function () {
         $('.header__burger,.header__menu').toggleClass('active');
-        // так же при нажатии блокирование скрола основного контента
         $('body').toggleClass('lock');
     });
 });
@@ -130,21 +121,12 @@ window.addEventListener("keydown", function (evts) {
 });
 
 
-/* блокування прокрутки
-$(document).ready(function () {
-    $('.four-block__text').click(function (event) {
-        $('body').toggleClass('lock');
-    });
-});
-*/
-
-/* хвилі*/
+/* кнопка з хвилями */
 
 let wrapper1 = document.querySelector(".wrapper2");
 let wave_btn = document.querySelector(".wave-btn2");
 let wave_btn__text = document.querySelector(".wave-btn__text2");
 let wave_btn__waves = document.querySelector(".wave-btn__waves2");
-
 
 window.onresize = function () {
     if (document.documentElement.clientWidth >= 767) {
